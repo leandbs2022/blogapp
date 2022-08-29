@@ -10,7 +10,12 @@ const path = require('path')
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 //handlebars
-app.engine('handlebars', handlebars.engine({ defaultLayout: 'main' }));
+app.engine('handlebars', handlebars.engine({ 
+    extname: 'handlebars', 
+    defaultLayout: 'main', 
+    layoutDir: __dirname + '/views/layouts',
+    partialsDir: path.join(__dirname, 'views/partials'),
+}))
 app.set('view engine', 'handlebars')
 //mongoose
 

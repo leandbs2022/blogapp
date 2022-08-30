@@ -25,6 +25,8 @@ app.use(express.static(path.join(__dirname,'public')))
 app.get('/', (req, res) => {
     res.send('Principal')
 })
+
+
 app.use('/admin', admin)
 //Outros
 const port = 8080

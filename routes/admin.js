@@ -13,8 +13,8 @@ router.get('/categorias', (req, res) => {
     res.render('admin/categorias')
 })
 
-router.get('/categorias/add', (req, res) => {
-    res.render('admin/addcategorias')
+router.get('/categorias/adicionarcad', (req, res) => {
+    res.render('admin/adicionar')
 })
 
 module.exports = router

@@ -5,28 +5,30 @@ const bodyParser = require('body-parser')
 const app = express()
 const admin = require('./routes/admin')
 const path = require('path')
-//const mongoose = require('mongoose')
+const mongoose = require('mongoose')
 //config
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 //handlebars
-app.engine('handlebars', handlebars.engine({ 
-    extname: 'handlebars', 
-    defaultLayout: 'main', 
+app.engine('handlebars', handlebars.engine({
+    extname: 'handlebars',
+    defaultLayout: 'main',
     layoutDir: __dirname + '/views/layouts',
     partialsDir: path.join(__dirname, 'views/partials'),
 }))
 app.set('view engine', 'handlebars')
 //mongoose
-
+mongoose.connect('mongodb://localhost/blogapp').then(()=>{
+        console.log('Servidor conectado')
+}).catch((err)=>{
+    console.log('erro ao conectar:'+err)
+})
 //public
-app.use(express.static(path.join(__dirname,'public')))
+app.use(express.static(path.join(__dirname, 'public')))
 //rotas
 app.get('/', (req, res) => {
     res.send('Principal')
 })
-
-
 app.use('/admin', admin)
 //Outros
 const port = 8080
